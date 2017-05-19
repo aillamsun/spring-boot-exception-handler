@@ -7,7 +7,7 @@ package com.sung.result;
  */
 public enum GlobalErrorInfoEnum implements ErrorInfo {
 
-    SUCCESS("0", "success"),
+    SUCCESS("200", "success"),
     NOT_FOUND("-1", "service not found");
 
     private String code;

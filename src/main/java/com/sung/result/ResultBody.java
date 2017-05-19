@@ -10,7 +10,7 @@ public class ResultBody implements Serializable{
     /**
      * 响应代码
      */
-    private String code;
+    private String code = "200";
 
     /**
      * 响应消息
