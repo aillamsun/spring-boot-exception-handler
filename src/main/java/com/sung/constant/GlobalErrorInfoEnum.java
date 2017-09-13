@@ -1,4 +1,6 @@
-package com.sung.result;
+package com.sung.constant;
+
+import com.sung.result.ErrorInfo;
 
 /**
  * 应用系统级别的错误码
@@ -26,4 +28,10 @@ public enum GlobalErrorInfoEnum implements ErrorInfo {
     public String getMessage() {
         return this.message;
     }
+
+    @Override
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 }

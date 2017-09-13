@@ -11,5 +11,5 @@ public interface ErrorInfo {
 
     String getMessage();
 
-
+    void setMessage(String message);
 }

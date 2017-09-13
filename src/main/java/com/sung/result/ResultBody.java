@@ -1,5 +1,7 @@
 package com.sung.result;
 
+import com.sung.constant.GlobalErrorInfoEnum;
+
 import java.io.Serializable;
 
 /**

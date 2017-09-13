@@ -44,4 +44,15 @@ public class ErrorJsonControllerTest {
         System.out.println(status);
         System.out.println(content);
     }
+
+
+    @Test
+    public void testErrorGetUserargs() throws Exception {
+        String uri = "/api/user/args";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        String content = mvcResult.getResponse().getContentAsString();
+        System.out.println(status);
+        System.out.println(content);
+    }
 }
