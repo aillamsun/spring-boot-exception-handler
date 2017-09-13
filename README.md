@@ -72,6 +72,14 @@ public class GlobalErrorInfoHandler {
 ```
 -----
 
+## 配置文件
+```properties
+
+000001=params not null in properties
+000002=params not null {0} in properties {1}
+
+```
+
 
 ## 测试 DEMO
 
