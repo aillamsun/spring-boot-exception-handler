@@ -109,7 +109,7 @@ public class GlobalErrorInfoHandler {
         System.out.println(content);
     }
 ```
-> * Result:{"code":"000001","message":"params not null","result":null}
+> * Result:{"code":"000001","message":"params not null in properties","result":null}
 
 
 
