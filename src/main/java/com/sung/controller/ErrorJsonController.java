@@ -45,4 +45,15 @@ public class ErrorJsonController {
         }
         return new ResultBody(new User(1L, account, "admin", 18, 1));
     }
+
+    /**
+     * 测试全局异常
+     * @param account
+     * @return
+     */
+    @GetMapping("other")
+    public ResultBody otherExpetion(String account) {
+        int i = 1 / 0;
+        return new ResultBody(new User(1L, account, "admin", 18, 1));
+    }
 }

@@ -41,6 +41,19 @@
         }
 ```
 
+```java
+    /**
+     * 测试全局异常
+     * @param account
+     * @return
+     */
+    @GetMapping("other")
+    public ResultBody otherExpetion(String account) {
+        int i = 1 / 0;
+        return new ResultBody(new User(1L, account, "admin", 18, 1));
+    }
+```
+
 
 ## Exception Handler
 
@@ -49,6 +62,28 @@
 public class GlobalErrorInfoHandler {
 
 
+private static Logger logger = LoggerFactory.getLogger(GlobalErrorInfoHandler.class);
+
+     /**
+         * 全局系统异常
+         * @param request
+         * @param exception
+         * @return
+         */
+        @ExceptionHandler(value = RuntimeException.class)
+        public ResultBody errorHandlerOverJson(HttpServletRequest request, RuntimeException exception) {
+            logger.error("全局异常:", exception.getMessage());
+            ResultBody result = new ResultBody(GlobalErrorInfoEnum.NOT_FOUND);
+            return result;
+        }
+        
+    
+         /**
+             * GlobalErrorInfoException 系统异常
+             * @param request
+             * @param exception
+             * @return
+             */
     @ExceptionHandler(value = GlobalErrorInfoException.class)
     public ResultBody errorHandlerOverJson(HttpServletRequest request, GlobalErrorInfoException exception) {
         ErrorInfo errorInfo = exception.getErrorInfo();
@@ -99,6 +134,11 @@ public class GlobalErrorInfoHandler {
 
 
 ```java
+
+    /**
+     * 测试i18n
+     * @throws Exception
+     */
     @Test
     public void testErrorGetUser() throws Exception {
         String uri = "/api/user";
@@ -114,6 +154,10 @@ public class GlobalErrorInfoHandler {
 
 
 ```java
+    /**
+     * 测试i18n 通配符
+     * @throws Exception
+     */
     @Test
        public void testErrorGetUserargs() throws Exception {
            String uri = "/api/user/args";
@@ -126,3 +170,20 @@ public class GlobalErrorInfoHandler {
    }
 ```
 > * Result:{"code":"000002","message":"params not null 啊啊啊啊 in properties 哈哈哈哈哈","result":null}
+
+```java
+ /**
+     * 测试全局异常
+     * @throws Exception
+     */
+    @Test
+    public void testOther() throws Exception {
+        String uri = "/api/user/other";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        String content = mvcResult.getResponse().getContentAsString();
+        System.out.println(status);
+        System.out.println(content);
+    }
+```
+> * Result:{"code":"00000","message":"global service error!","result":null}

@@ -35,6 +35,10 @@ public class ErrorJsonControllerTest {
 
     }
 
+    /**
+     * 测试i18n
+     * @throws Exception
+     */
     @Test
     public void testErrorGetUser() throws Exception {
         String uri = "/api/user";
@@ -45,10 +49,27 @@ public class ErrorJsonControllerTest {
         System.out.println(content);
     }
 
-
+    /**
+     * 测试i18n 通配符
+     * @throws Exception
+     */
     @Test
     public void testErrorGetUserargs() throws Exception {
         String uri = "/api/user/args";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        String content = mvcResult.getResponse().getContentAsString();
+        System.out.println(status);
+        System.out.println(content);
+    }
+
+    /**
+     * 测试全局异常
+     * @throws Exception
+     */
+    @Test
+    public void testOther() throws Exception {
+        String uri = "/api/user/other";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON)).andReturn();
         int status = mvcResult.getResponse().getStatus();
         String content = mvcResult.getResponse().getContentAsString();

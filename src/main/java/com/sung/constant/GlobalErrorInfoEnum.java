@@ -10,7 +10,7 @@ import com.sung.result.ErrorInfo;
 public enum GlobalErrorInfoEnum implements ErrorInfo {
 
     SUCCESS("200", "success"),
-    NOT_FOUND("-1", "service not found");
+    NOT_FOUND("00000", "global service error!");
 
     private String code;
 
